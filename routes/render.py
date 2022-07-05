@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request 
-from tools import Yarn, Building
+from src.tools import Yarn, Building
 
 def render():
     """
@@ -49,6 +49,7 @@ def render():
     
     build = Building(data["elements"], data["css"])
     
-    Yarn(target=build.launch, args=(data["format"], data["selector"])).run()
+    url = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
+    
     return "render"
     

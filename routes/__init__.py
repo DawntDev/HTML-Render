@@ -1,9 +1,15 @@
+from routes.index import index
 from routes.render import render
 from routes.urlToImage import urlToImage
 from routes.builds import builds
 from routes.rules import rules
 
 ROOT = [
+    {
+        "path": "/",
+        "func": index,
+        "methods": ["GET"]
+    },
     {
         "path": "/api/v1/render",
         "func": render,
