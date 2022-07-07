@@ -1,7 +1,11 @@
+from multiprocessing import Manager
 from selenium import webdriver
 from threading import Thread, Lock
 from werkzeug.routing import BaseConverter
-import os, uuid, json
+import os
+import uuid
+import time
+import requests
 
 
 class HTMLRender:
@@ -9,13 +13,13 @@ class HTMLRender:
     __options.headless = True
     __options.add_argument("--ignore-certificate-errors")
     __driver = webdriver.Edge("./src/msedgedriver.exe", options=__options)
-    
+
     @staticmethod
     def screenshot(url, filename, format):
         HTMLRender.__driver.get(url)
         HTMLRender.__driver.save_screenshot(filename)
         HTMLRender.__driver.quit()
-    
+
     @staticmethod
     def captureElement(url, filename, format):
         HTMLRender.__driver.get(url)
@@ -27,14 +31,14 @@ class HTMLRender:
         HTMLRender.__driver.get(url)
         HTMLRender.__driver.save_screenshot(filename)
         HTMLRender.__driver.quit()
-    
+
     @staticmethod
     def recordingElement(url, filename, format):
         HTMLRender.__driver.get(url)
         HTMLRender.__driver.save_screenshot(filename)
         HTMLRender.__driver.quit()
-    
-    
+
+
 class Yarn(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, lock=False):
         if lock:
@@ -54,13 +58,14 @@ class Yarn(Thread):
     def launch(self):
         self.start()
         return self.__join()
-    
+
+
 class Building:
     def __init__(self, html, css) -> None:
         """
         Class for build a html file from the given data of request
         and convert it format required.
-        
+
         Parameters
         ----------
         html: str
@@ -74,12 +79,44 @@ class Building:
                 template = template.read()
                 f.write(template.format(id=self.id, css=css, html=html))
 
-    def convert(self, format, selector):
-        print(f"Building {self.id}")
-        pass
-    
+    def convert(self, format_, selector):
+        """
+        Convert the html file to the given format.
+
+        Parameters
+        ----------
+        format_: str
+            The format to convert the html file to.
+
+        selector: str
+            The selector of element to capture.
+        """
+
+        Manager.builds.append(self)
+        return True
+
+    def destroy(self, format_):
+        """
+        Destroy the file created by the build.
+
+        Parameters
+        ----------
+        format_: str
+            The format of the file to destroy.
+        """
+        PATH = f"./public/builds/{self.id}.{format_}"
+
+        time.sleep(15)
+        while os.path.exists(PATH):
+            try:
+                os.remove(PATH)
+                Manager.builds.remove(self)
+            except:
+                time.sleep(2)
+
+
 # Intermediate metaclass in the movement of elements between files, in order to avoid errors due to circular imports.
-Manager = type("Manager",(object,) ,{})
+Manager = type("Manager", (object,), {})
 
 # Regular expression converter for flask
 RegexConverter = type(

@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request 
-from src.tools import Yarn, Building
+from src.tools import Yarn, Building, Manager
 
 def render():
     """
@@ -28,7 +28,7 @@ def render():
     interface = {
         "keys": ("elements", "selector", "css", "format", "options"),
         "types": (str, str, str, str, dict),
-        "defaults": (None, None, "", "base64", {}) # None means that the element cannot be missing in this case elements is required
+        "defaults": (None, "body", "", "base64", {}) # None means that the element cannot be missing in this case elements is required
     }
 
     # Check that all keys are present and have the correct type
@@ -47,9 +47,11 @@ def render():
         error["code"] = 400
         return render_template("error.html", error=error), error["code"] # Return error page
     
+    # Build the html file
     build = Building(data["elements"], data["css"])
+    Manager.builds.append(build)
     
-    url = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
+    response = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
     
     return "render"
     

@@ -21,7 +21,7 @@ ROOT = [
         "methods": ["GET", "POST"],
     },
     {
-        "path": "/api/v1/builds/<regex('(.*?)\.(html|png|jpg)$'):file>",
+        "path": "/api/v1/builds/<regex('(.*?)\.(html|png|jpg|txt)$'):file>",
         "func": builds,
         "methods": ["GET"],
     },
