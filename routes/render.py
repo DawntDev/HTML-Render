@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request 
-from src.tools import Yarn, Building, Manager
+from src.tools import Building, Manager, validation
 
 def render():
     """
@@ -20,11 +20,6 @@ def render():
     """
     
     data = request.get_json()
-    error = {
-        "code": None,
-        "messages": []
-    }
-    
     interface = {
         "keys": ("elements", "selector", "css", "format", "options"),
         "types": (str, str, str, str, dict),
@@ -32,16 +27,7 @@ def render():
     }
 
     # Check that all keys are present and have the correct type
-    for key, type_, default in zip(*interface.values()):
-        if not key in data:
-            if default is None:
-                error["messages"].append(f"Missing key: {key}")
-            data[key] = default
-        elif data[key]:
-            if not isinstance(data[key], type_):
-                error["messages"].append(f"Invalid type for key: {key}")
-        else:
-            error["messages"].append(f"The key {key} is empty")
+    error = validation(data, interface)
     
     if error["messages"]:
         error["code"] = 400
@@ -51,7 +37,7 @@ def render():
     build = Building(data["elements"], data["css"])
     Manager.builds.append(build)
     
-    response = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
+    # response = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
     
     return "render"
     

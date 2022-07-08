@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>html-render | Error: {{ error.code }}</title>
 </head>
+
 <body>
     <h1>Error: {{ error.code }}</h1>
     <ul>
         {% for message in error.messages %}
-            <li>{{ message }}</li>
+        <li>{{ message }}</li>
         {% endfor %}
     </ul>
 </body>
+
 </html>

@@ -1,14 +1,19 @@
 {
     "screenshot": {
-        "window": [1920, 1080],
+        "window": [
+            1920,
+            1080
+        ],
         "selector": "body",
         "full": false,
         "timeout": 1.5,
         "format": "base64"
     },
-
     "recording": {
-        "window": [1920, 1080],
+        "window": [
+            1920,
+            1080
+        ],
         "selector": "body",
         "full": false,
         "timeout": 1.5,

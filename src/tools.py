@@ -1,64 +1,71 @@
-from multiprocessing import Manager
-from selenium import webdriver
 from threading import Thread, Lock
 from werkzeug.routing import BaseConverter
+from src.html_render import HTMLRender
 import os
 import uuid
 import time
-import requests
 
 
-class HTMLRender:
-    __options = webdriver.EdgeOptions()
-    __options.headless = True
-    __options.add_argument("--ignore-certificate-errors")
-    __driver = webdriver.Edge("./src/msedgedriver.exe", options=__options)
+PATH = os.path.join(os.getcwd(), "public", "builds")
+TYPES = {
+    "img": {
+        "ext": ("png", "jpg", "jpeg", "webp", "bmp", "tiff"),
+        "func": HTMLRender.screenshot
+    },
+    "raw": {
+        "ext": ("raw-png", "base64"),
+        "func": HTMLRender.raw
+    },
+    "video": {
+        "ext": ("mp4", "gif"),
+        "func": HTMLRender.recording
+    }
+}
 
-    @staticmethod
-    def screenshot(url, filename, format):
-        HTMLRender.__driver.get(url)
-        HTMLRender.__driver.save_screenshot(filename)
-        HTMLRender.__driver.quit()
+# Intermediate metaclass in the movement of elements between files, in order to avoid errors due to circular imports.
+Manager = type("Manager", (object,), {})
 
-    @staticmethod
-    def captureElement(url, filename, format):
-        HTMLRender.__driver.get(url)
-        HTMLRender.__driver.save_screenshot(filename)
-        HTMLRender.__driver.quit()
-
-    @staticmethod
-    def recording(url, filename, format):
-        HTMLRender.__driver.get(url)
-        HTMLRender.__driver.save_screenshot(filename)
-        HTMLRender.__driver.quit()
-
-    @staticmethod
-    def recordingElement(url, filename, format):
-        HTMLRender.__driver.get(url)
-        HTMLRender.__driver.save_screenshot(filename)
-        HTMLRender.__driver.quit()
+# Regular expression converter for flask
+RegexConverter = type(
+    "RegexConverter",
+    (BaseConverter,),
+    {
+        "__init__": lambda self, url_map, *items: (
+            super(RegexConverter, self).__init__(url_map),
+            setattr(self, "regex", items[0]),
+        )[0]
+    }
+)
 
 
-class Yarn(Thread):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, lock=False):
-        if lock:
-            self._lock = Lock()
-            args = (*args, self._lock)
-        Thread.__init__(self, group, target, name, args, kwargs)
-        self._return = None
+def validation(data: dict, interface: dict):
+    """
+    A function to validate the data received from the user is valid
 
-    def run(self):
-        if self._target is not None:
-            self._return = self._target(*self._args, **self._kwargs)
+    Parameters:
+        data (dict): The data received from the user
+        interface (dict): The interface of the data
 
-    def __join(self, *args):
-        Thread.join(self, *args)
-        return self._return
+    Returns:
+        bool: True if the data is valid, False otherwise
+    """
+    error = {
+        "code": None,
+        "messages": []
+    }
 
-    def launch(self):
-        self.start()
-        return self.__join()
+    for key, type_, default in zip(*interface.values()):
+        if not key in data:
+            if default is None:
+                error["messages"].append(f"Missing key: {key}")
+            data[key] = default
+        elif data[key]:
+            if not isinstance(data[key], type_):
+                error["messages"].append(f"Invalid type for key: {key}")
+        else:
+            error["messages"].append(f"The key {key} is empty")
 
+    return error
 
 class Building:
     def __init__(self, html, css) -> None:
@@ -74,10 +81,11 @@ class Building:
             The css code to build
         """
         self.id = uuid.uuid4()
-        with open(f"./public/builds/{self.id}.html", "w") as f:
-            with open("./src/template.html", "r") as template:
-                template = template.read()
-                f.write(template.format(id=self.id, css=css, html=html))
+        if html and css:
+            with open(f"./public/builds/{self.id}.html", "w") as f:
+                with open("./src/template.html", "r") as template:
+                    template = template.read()
+                    f.write(template.format(id=self.id, css=css, html=html))
 
     def convert(self, format_, selector):
         """
@@ -95,6 +103,20 @@ class Building:
         Manager.builds.append(self)
         return True
 
+    @classmethod
+    def convertURL(cls, url, format_, selector):
+        obj = cls(None, None)
+        Manager.builds.append(obj)
+
+        filename = f"{obj.id}.{format_}"
+        img = HTMLRender.screenshot(
+            url=url,
+            selector=selector,
+            filename=filename
+        )
+
+        return (None, filename)[img]
+
     def destroy(self, format_):
         """
         Destroy the file created by the build.
@@ -104,28 +126,12 @@ class Building:
         format_: str
             The format of the file to destroy.
         """
-        PATH = f"./public/builds/{self.id}.{format_}"
+        file = f"{PATH}/{self.id}.{format_}"
 
         time.sleep(15)
-        while os.path.exists(PATH):
+        while os.path.exists(file):
             try:
-                os.remove(PATH)
+                os.remove(file)
                 Manager.builds.remove(self)
             except:
                 time.sleep(2)
-
-
-# Intermediate metaclass in the movement of elements between files, in order to avoid errors due to circular imports.
-Manager = type("Manager", (object,), {})
-
-# Regular expression converter for flask
-RegexConverter = type(
-    "RegexConverter",
-    (BaseConverter,),
-    {
-        "__init__": lambda self, url_map, *items: (
-            super(RegexConverter, self).__init__(url_map),
-            setattr(self, "regex", items[0]),
-        )[0]
-    }
-)
