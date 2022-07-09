@@ -21,11 +21,17 @@ class HTMLRender:
             options=__options,
         )
 
+        HTMLRender.__getSize = lambda direct, select: (
+            HTMLRender.__driver.execute_script(
+                f"return document.querySelector('{select}').parentNode.scroll{direct}"
+            )
+        )
+
         HTMLRender.__driver.set_window_size("1920", "1080")  # May need manual adjustment
         HTMLRender.__driver.get("about:blank")
 
     @staticmethod
-    def screenshot(url, selector, filename, size=("1920", "1080"), timeout=2.5):
+    def screenshot(url, filename, selector, size, timeout):
         """
         A method to take a screenshot of the given url.
 
@@ -37,20 +43,35 @@ class HTMLRender:
             The selector of element to capture.
         filename: str
             The filename of the screenshot.
-        size: tuple (default: ("1920", "1080"))
+        size: tuple
             The size of the screenshot
-        timeout: float (default: 2.5)
+        timeout: float
             The timeout of the screenshot.
         """
         try:
-            HTMLRender.__driver.set_window_size(*size) if size != ("1920", "1080") else None
             HTMLRender.__driver.get(url)
+            if size != ["1920", "1080"]:
+                fulls = size.count("full")
+                
+                if fulls == 2: # [full, full]
+                    size = [
+                        HTMLRender.__getSize("Width", selector),
+                        HTMLRender.__getSize("Height", selector),
+                    ]
+                    
+                elif fulls: # [full, x] or [x, full]
+                    direct = size.index("full")
+                    size[direct] = HTMLRender.__getSize(("Width", "Height")[direct], selector)
+                
+                HTMLRender.__driver.set_window_size(*size)
             time.sleep(timeout)
 
             name, ext = filename.split(".")
             HTMLRender.__driver.find_element(By.CSS_SELECTOR, selector).screenshot(f"{HTMLRender.__PATH}/{name}.{ext}")
             return os.path.exists(f"{HTMLRender.__PATH}/{name}.{ext}") # Return True if file exists
-        except:
+        
+        except Exception as e:
+            print(e)
             return False
 
     @staticmethod

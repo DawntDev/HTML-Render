@@ -9,7 +9,7 @@ import time
 PATH = os.path.join(os.getcwd(), "public", "builds")
 TYPES = {
     "img": {
-        "ext": ("png", "jpg", "jpeg", "webp", "bmp", "tiff"),
+        "ext": ("png", "jpg"),
         "func": HTMLRender.screenshot
     },
     "raw": {
@@ -38,7 +38,7 @@ RegexConverter = type(
 )
 
 
-def validation(data: dict, interface: dict):
+def validation(data: dict, interface: dict) -> dict:
     """
     A function to validate the data received from the user is valid
 
@@ -54,6 +54,7 @@ def validation(data: dict, interface: dict):
         "messages": []
     }
 
+    # Check if the data contains the keys of the interface
     for key, type_, default in zip(*interface.values()):
         if not key in data:
             if default is None:
@@ -65,10 +66,18 @@ def validation(data: dict, interface: dict):
         else:
             error["messages"].append(f"The key {key} is empty")
 
+    # Check if the format is valid
+    for type_ in TYPES:
+        if data["format"] in TYPES[type_]["ext"]:
+            data["type"] = type_
+            break
+    else:
+        error["messages"].append(f"Invalid format: {data['format']}")
+        
     return error
 
 class Building:
-    def __init__(self, html, css) -> None:
+    def __init__(self, html: str, css: str) -> None:
         """
         Class for build a html file from the given data of request
         and convert it format required.
@@ -104,20 +113,24 @@ class Building:
         return True
 
     @classmethod
-    def convertURL(cls, url, format_, selector):
+    def convertURL(cls, url, format_, type_, selector, size, timeout, fps):
         obj = cls(None, None)
         Manager.builds.append(obj)
-
         filename = f"{obj.id}.{format_}"
-        img = HTMLRender.screenshot(
-            url=url,
-            selector=selector,
-            filename=filename
-        )
+        
+        match type_:
+            case "img":
+                img = TYPES[type_]["func"](url, filename, selector, size, timeout)
+            case "raw":
+                img = TYPES[type_]["func"](url, filename, selector, size, timeout)
+            case "video":
+                img = TYPES[type_]["func"](url, filename, selector, size, timeout, fps)
+            case _:
+                img = False
+                
+        return (False, filename)[img]
 
-        return (None, filename)[img]
-
-    def destroy(self, format_):
+    def destroy(self, format_: str) -> None:
         """
         Destroy the file created by the build.
 

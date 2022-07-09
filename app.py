@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask
 from flask_cors import CORS
 from routes import ROOT
 from src.tools import RegexConverter, Manager, PATH
@@ -22,15 +22,11 @@ os.mkdir("public/builds")
 Manager.builds = []
 
 # Register the routes
-for i in ROOT:
-    app.route(i['path'], methods=i['methods'])(i['func'])
-
-
-@app.route('/test')
-def test():
-    exist = HTMLRender.screenshot("https://www.google.com")
-    print(exist)
-    return redirect("api/v1/builds/test.png")
+for route in ROOT:
+    app.route(
+        rule=route["path"],
+        methods=route["methods"]   
+    )(route['func'])
 
 if __name__ == "__main__":
     Thread(target=HTMLRender.init, args=(PATH,)).start()

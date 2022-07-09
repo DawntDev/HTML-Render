@@ -1,6 +1,6 @@
 from routes.index import index
 from routes.render import render
-from routes.urlToImage import urlToImage
+from routes.url_to_image import url_to_image
 from routes.builds import builds
 from routes.rules import rules
 
@@ -17,7 +17,7 @@ ROOT = [
     },
     {
         "path": "/api/v1/urlToImage",
-        "func": urlToImage,
+        "func": url_to_image,
         "methods": ["GET", "POST"],
     },
     {
