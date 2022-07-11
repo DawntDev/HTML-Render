@@ -3,7 +3,7 @@ from flask_cors import CORS
 from routes import ROOT
 from src.tools import RegexConverter, Manager, PATH
 from src.html_render import HTMLRender
-from threading import Thread
+from threading import Timer
 import os
 import shutil
 
@@ -29,5 +29,6 @@ for route in ROOT:
     )(route['func'])
 
 if __name__ == "__main__":
-    Thread(target=HTMLRender.init, args=(PATH,)).start()
+    Timer(.25, HTMLRender.init, args=(PATH,)).start()
+    print("\n\x1b[1;32m[Flask]\x1b[0m - Initializing...\n")
     app.run()

@@ -1,4 +1,3 @@
-from threading import Thread, Lock
 from werkzeug.routing import BaseConverter
 from src.html_render import HTMLRender
 import os
@@ -13,7 +12,7 @@ TYPES = {
         "func": HTMLRender.screenshot
     },
     "raw": {
-        "ext": ("raw-png", "base64"),
+        "ext": ("bin", "base64"),
         "func": HTMLRender.raw
     },
     "video": {
@@ -42,9 +41,12 @@ def validation(data: dict, interface: dict) -> dict:
     """
     A function to validate the data received from the user is valid
 
-    Parameters:
-        data (dict): The data received from the user
-        interface (dict): The interface of the data
+    Parameters
+    ----------
+    data: dict
+        The data received from the user.
+    interface dict: 
+        The interface of the data
 
     Returns:
         bool: True if the data is valid, False otherwise
@@ -113,7 +115,33 @@ class Building:
         return True
 
     @classmethod
-    def convertURL(cls, url, format_, type_, selector, size, timeout, fps):
+    def convertURL(cls, url: str, format_: str, type_: str, selector: str, size: list[str, str], timeout: float, fps: int) -> bool | str:
+        """
+        Class method to convert urls, through the constructor. This to give them an id, in addition to being stored in the Manager as an instance of the class.
+        
+        Parameters
+        ----------
+        url: str
+            The url to convert.
+        format_: str
+            The format to convert the url to.
+        type_: str
+            The type of the file to convert.
+        selector: str
+            CSS selector of the element to capture.
+        size: list[str, str]
+            The size of the image to capture.
+        timeout: int
+            Timeout for a page to load.
+        fps: int
+            The frames per second of the video.
+        
+        Returns
+        -------
+         bool: False if the page could not be converted
+         or
+         str: The url of the converted file.
+        """
         obj = cls(None, None)
         Manager.builds.append(obj)
         filename = f"{obj.id}.{format_}"
