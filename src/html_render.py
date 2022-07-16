@@ -34,7 +34,6 @@ class HTMLRender:
         HTMLRender.__driver.set_window_size("1920", "1080")  # May need manual adjustment
         HTMLRender.__driver.get("about:blank")
 
-    
     @staticmethod
     def __cover_window(size: list[str, str], selector: str) -> None:
         """
@@ -100,9 +99,9 @@ class HTMLRender:
         
         except Exception as e:
             HTMLRender.generate_log(
-                url= url,
-                filename= filename,
-                exception= e
+                url=url,
+                filename=filename,
+                exception=e
             )
             return False
 
@@ -146,16 +145,12 @@ class HTMLRender:
         
         except Exception as e:
             HTMLRender.generate_log(
-                url= url,
-                filename= filename,
-                exception= e
+                url=url,
+                filename=filename,
+                exception=e
             )
             return False
-
-    @staticmethod
-    def recording(url, filename, format): pass
-
-    
+        
     @staticmethod
     def generate_log(url: str, filename: str, exception: Exception):
         """

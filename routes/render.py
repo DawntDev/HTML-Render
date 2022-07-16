@@ -21,9 +21,10 @@ def render():
     
     data = request.get_json()
     interface = {
-        "keys": ("elements", "selector", "css", "format", "options"),
-        "types": (str, str, str, str, dict),
-        "defaults": (None, "body", "", "base64", {}) # None means that the element cannot be missing in this case elements is required
+        "keys": ("elements", "css", "js", "selector", "format", "size", "timeout"),
+        "types": (str, str, str, str, str, list, float),
+        # None means that the element cannot be missing in this case elements is required
+        "defaults": (None, "", "", "body", "png", ["1920", "1080"], 2.5)
     }
 
     # Check that all keys are present and have the correct type
@@ -34,10 +35,25 @@ def render():
         return render_template("error.html", error=error), error["code"] # Return error page
     
     # Build the html file
-    build = Building(data["elements"], data["css"])
+    build = Building(data["elements"], data["css"], data["js"])
     Manager.builds.append(build)
     
-    # response = Yarn(target=build.convert, args=(data["format"], data["selector"])).launch()
+    response = build.convert(
+        format_=data["format"],
+        type_=data["type"],
+        selector=data["selector"],
+        size=data["size"],
+        timeout=data["timeout"]
+    )
     
-    return "render"
+    return (
+        (
+            render_template(
+                "error.html", 
+                error={"code": 502, "messages": ["Error while rendering the page"]}
+            ), 
+            502 # Status code to return
+        ),
+        redirect(f"/api/v1/builds/{response}")
+    )[bool(response)] # If the response not is False, return the url converted.
     

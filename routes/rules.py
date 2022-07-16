@@ -10,6 +10,4 @@ def rules(version):
             root[rule.rule] = *filter(lambda x: x in ("GET", "POST", "PUT", "DELETE"), rule.methods),
 
     root = {rule: methods for rule, methods in root.items() if version in rule}
-    print(root)
-
     return render_template("rules.html", rules=root)

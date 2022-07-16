@@ -5,11 +5,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="theme-color" content="#6366f1">
+    <title>HTML-Render</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/section.css') }}" media="all">
 </head>
 
 <body>
-    <h1>Hello World</h1>
+    <header>
+        <div class="title">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="1.5"
+                    class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path
+                        d="M2 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM0 2a2 2 0 0 1 3.937-.5h8.126A2 2 0 1 1 14.5 3.937v8.126a2 2 0 1 1-2.437 2.437H3.937A2 2 0 1 1 1.5 12.063V3.937A2 2 0 0 1 0 2zm2.5 1.937v8.126c.703.18 1.256.734 1.437 1.437h8.126a2.004 2.004 0 0 1 1.437-1.437V3.937A2.004 2.004 0 0 1 12.063 2.5H3.937A2.004 2.004 0 0 1 2.5 3.937zM14 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM2 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                </svg>
+            </div>
+            <h1>HTML-Render</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="element">
+                    <a href="#documentation">Documentation</a>
+                </li>
+                <li class="element">
+                    <a href="#how-to-use">How to use?</a>
+                </li>
+                <li class="element">
+                    <a href="#github">GitHub</a>
+                </li>
+                <li id="start" class="element">
+                    <a href="#">
+                        Start
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                            <path fill-rule="evenodd"
+                                d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="init">
+        <div class="container">
+            <div class="left">
+                <h2>What is HTML-Render?</h2>
+                <p>
+                    HTML-Render is an API that allows you to render HTML and CSS code to get a physical representation
+                    of the DOM, either from your own web page or from an external web site. It is very easy and simple
+                    to use and the
+                    quality of the generated
+                    images is very good.
+                </p>
+                <a class="button-link" href="{{ url_for('rules', version='v1')}}">View more</a>
+            </div>
+            <div id="example"></div>
+        </div>
+    </section>
+    <section id="documentation">
+        <div class="container">
+            <h3>Documentation</h3>
+        </div>
+    </section>
+    <section id="how-to-use">
+        <div class="container">
+            <h3>How to use?</h3>
+        </div>
+    </section>
+    <section id="github">
+        <div class="container">
+            <div class="left">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-github" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <h3>GitHub</h3>
+                </div>
+                <p>
+                    If you want to contribute to the project you can do it through the <b>GitHub</b> repository, where
+                    you will
+                    find the source code of the <b>API</b>.
+                    Some ways in which you can help are by reporting bugs, resolving bugs or simply adding new features
+                    to the API. Remember to review the <b>README.md</b> file, as it contains the steps to follow
+                    so that
+                    your proposal is not rejected.
+                </p>
+                <a class="button-link" href="https://github.com/DawntDev/HTML-Render">Repository</a>
+            </div>
+            <div id="tsparticles"></div>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.3/tsparticles.bundle.min.js"
+    integrity="sha512-klu0y6k0isDbuEW4o6MrEv7Ge1pPfP0ejiX5aW8RHk3k2oV97cL9/oOwKWmszHpQh/0+Kgg69CU2nMy2sIeclQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </html>

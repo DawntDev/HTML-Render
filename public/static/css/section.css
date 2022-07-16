@@ -1,0 +1,188 @@
+body > section {
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+body > section > div.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 6rem 3rem;
+}
+
+body > section > div.container > div.left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin-right: 2rem;
+}
+
+/* Section: initial */
+body > section#init > div.container > div.left > h2 {
+    font-size: calc(1.5rem + 1vw);
+    line-height: 2.75rem;
+    font-weight: 700;
+    color: #2f353d;
+    margin-bottom: 1rem;
+}
+
+body > section#init > div.container > div.left > p {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    width: 90%;
+    color: #6a6e73;
+    margin-bottom: 1.5rem;
+}
+
+body > section#init > div.container > div#example {
+    width: 50%;
+    height: calc(7rem + 20vw);
+    background-image: url("http://127.0.0.1:5000/static/img/bongo-cat-codes-2jamming.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    outline: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+}
+
+body > section#init > div.container > div#example > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+@media (max-width: 968px) {
+    body > section#init > div.container {
+        flex-direction: column; 
+        padding: 5rem 0;
+    }
+
+    body > section#init > div.container > div.left {
+        width: 100%; 
+        margin: 0 0 4rem;
+        text-align: justify; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    body > section#init > div.container > div.left > a {
+        width: 75%;
+        margin: 0 3rem;
+    }
+
+    body > section#init > div.container > div#example {
+        width: 90%;
+        height: calc(12rem + 20vw);
+    }
+
+}
+
+@media (max-width: 548px) {
+    body > section#init > div.container > div.left > h2 {
+        font-size: calc(1.25rem + 1vw);
+        line-height: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }   
+
+    body > section#init > div.container > div.left > p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        width: 90%;
+        margin-bottom: 1.5rem;
+    }
+}
+
+
+/* Section: GitHub */
+body > section#github > div.container > div.left > div.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+body > section#github > div.container > div.left > div.icon > svg {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1rem;
+}
+
+body > section#github > div.container > div.left > div.icon > h3 {
+    font-size: calc(2rem + 1vw);
+    line-height: 2.75rem;
+    font-weight: 700;
+    color: #2f353d;
+}
+
+body > section#github > div.container > div.left > p {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    text-align: left;
+    width: 85%;
+    color: #6a6e73;
+    margin-bottom: 1.5rem;
+}
+
+body > section#github > div.container > div#tsparticles {
+    width: 50%;
+    height: calc(7rem + 20vw);
+}
+
+@media (max-width: 867px) {
+    body > section#github > div.container > div.left > div.icon {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    body > section#github > div.container > div.left > div.icon > svg {
+        width: 5rem;
+        height: 5rem;
+        margin-right: 0;
+    }
+    
+    body > section#github > div.container > div.left > div.icon > h3 {
+        font-size: calc(1.5rem + 1vw);
+        margin-bottom: 1rem;
+    }
+    
+    body > section#github > div.container > div.left > p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        text-align: justify;
+        width: 90%;
+        margin-bottom: 1.5rem;
+    }
+    
+    body > section#github > div.container > div.left > a {
+        width: 75%;
+        margin: 0 1.5rem;
+    }
+
+}
+
+
+@media (max-width: 696px) {
+
+    body > section#github > div.container { padding: 5rem 0; }
+    body > section#github div.container > div#tsparticles { display: none; }
+    
+    body > section#github > div.container > div.left {
+        width: 90%; 
+        margin: 0 0 4rem;
+        text-align: justify; 
+        align-items: center;
+        justify-content: center;
+    }
+
+}
