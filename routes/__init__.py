@@ -1,4 +1,5 @@
 from routes.index import index
+from routes.new_render import new_render
 from routes.render import render
 from routes.url_to_image import url_to_image
 from routes.builds import builds
@@ -8,6 +9,11 @@ ROOT = [
     {
         "path": "/",
         "func": index,
+        "methods": ["GET"]
+    },
+    {
+        "path": "/new-render",
+        "func": new_render,
         "methods": ["GET"]
     },
     {
@@ -26,7 +32,7 @@ ROOT = [
         "methods": ["GET"],
     },
     {
-        "path": "/rules/<string:version>",
+        "path": "/api/rules/<string:version>",
         "func": rules,
         "methods": ["GET"],
     }

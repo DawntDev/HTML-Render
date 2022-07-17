@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="HTML-Render is an API that allows you to render HTML and CSS code to get a physical representation of the DOM">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
     <title>HTML-Render</title>
@@ -30,16 +32,16 @@
         <nav>
             <ul>
                 <li class="element">
-                    <a href="#documentation">Documentation</a>
+                    <a href="./#how-to-use">How to use?</a>
                 </li>
                 <li class="element">
-                    <a href="#how-to-use">How to use?</a>
+                    <a href="./#documentation">Documentation</a>
                 </li>
                 <li class="element">
-                    <a href="#github">GitHub</a>
+                    <a href="./#github">GitHub</a>
                 </li>
                 <li id="start" class="element">
-                    <a href="#">
+                    <a href="{{ url_for('new_render') }}">
                         Start
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
@@ -54,8 +56,8 @@
         </nav>
     </header>
     <section id="init">
-        <div class="container">
-            <div class="left">
+        <div class="row-box">
+            <div class="aside">
                 <h2>What is HTML-Render?</h2>
                 <p>
                     HTML-Render is an API that allows you to render HTML and CSS code to get a physical representation
@@ -69,26 +71,258 @@
             <div id="example"></div>
         </div>
     </section>
-    <section id="documentation">
-        <div class="container">
-            <h3>Documentation</h3>
+    <section id="how-to-use">
+        <div class="centered-box">
+            <h3>How to use HTML-Render?</h3>
+            <p>From the browser</p>
+            <div class="row-box">
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-check-all" viewBox="0 0 16 16">
+                            <path
+                                d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z" />
+                        </svg>
+                        <h4>Select a method to use</h4>
+                    </div>
+                    <p>
+                        Go to the HTML-Render page, and select the method you want to use. The first one is to render
+                        your
+                        own code and the
+                        second one is to capture an existing page.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.004-.001.274-.11a.75.75 0 0 1 .558 0l.274.11.004.001 6.971 2.789Zm-1.374.527L8 5.962 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339Z" />
+                        </svg>
+                        <h4>Customize your render</h4>
+                    </div>
+                    <p>
+                        Fill in the image customization fields, as well as the element and format you want to obtain.
+                        For more information check the documentation.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-hourglass-split" viewBox="0 0 16 16">
+                            <path
+                                d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
+                        </svg>
+                        <h4>Await for the render to finish</h4>
+                    </div>
+                    <p>
+                        Wait for HTML-Render to do its job, it may take between 2 and 5 seconds to perform the
+                        operation,
+                        depending on the speed
+                        of your internet.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
-    <section id="how-to-use">
-        <div class="container">
-            <h3>How to use?</h3>
+    <section id="documentation">
+        <div class="row-box">
+            <div class="aside">
+                <div id="request" class="option active">
+                    <h4>The body of the request</h4>
+                    <p>
+                        The body of the request is composed of a JSON object, which varies according to the method you
+                        want to use. Although in
+                        essence they are very similar.
+                        In the following examples you will be able to see which are the fields of which the body of your
+                        request is composed.
+                    </p>
+                    <div id="btn-request">
+                        <button type="button" class="active">/api/v1/render</button>
+                        <button type="button">/api/v1/urlToImage</button>
+                    </div>
+                    <div class="code-box">
+                        <table id="request-render">
+                            <tbody id="lang-json">
+                                <tr>
+                                    <td>
+                                        <span class="bracket">{</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">elements</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">css</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"h1 { color: red; }"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">js</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"console.log('Hello World')"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">selector</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"body"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">format</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"png"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">size</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="square-bracket">[</span>
+                                        <span class="string">"1920"</span>
+                                        <span class="comma">, </span>
+                                        <span class="string">"1080"</span>
+                                        <span class="square-bracket">]</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">timeout</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="float">2.5</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="bracket">}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="request-urlToImage" style="display: none;">
+                            <tbody id="lang-json">
+                                <tr>
+                                    <td>
+                                        <span class="bracket">{</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">url</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"https://www.google.com"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">selector</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"body"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">format</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="string">"png"</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">size</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="square-bracket">[</span>
+                                        <span class="string">"1920"</span>
+                                        <span class="comma">, </span>
+                                        <span class="string">"1080"</span>
+                                        <span class="square-bracket">]</span>
+                                        <span class="comma">,</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tb-1">
+                                        <span class="key">timeout</span>
+                                    </td>
+                                    <td class="tb-1">
+                                        <span class="float">2.5</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="bracket">}</span>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="option" style="display: none;">
+                    <h4>/api/v1/render</h4>
+                    <p></p>
+                </div>
+                <div class="option" style="display: none;">
+                    <h4>/api/v1/urlToImage</h4>
+                    <p></p>
+                </div>
+                <div class="option" style="display: none;">
+                    <h4>Errors</h4>
+                    <p>
+                        During the applications you may encounter some answers that are not as expected.Therefore,
+                        through this list you will find some of the most common mistakes. So that you can resolve them
+                        as soon as possible.
+                    </p>
+                </div>
+            </div>
+            <div class="aside">
+                <h3>Documentation</h3>
+                <div id="document">
+                    <button type="button" class="active">The body of the request</button>
+                    <button type="button">/api/v1/render</button>
+                    <button type="button">/api/v1/urlToImage</button>
+                    <button type="button">Errors</button>
+                </div>
+            </div>
         </div>
     </section>
     <section id="github">
-        <div class="container">
-            <div class="left">
+        <div class="row-box">
+            <div class="aside">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-github" viewBox="0 0 16 16">
                         <path
                             d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                     </svg>
-                    <h3>GitHub</h3>
+                    <h4>GitHub</h4>
                 </div>
                 <p>
                     If you want to contribute to the project you can do it through the <b>GitHub</b> repository, where

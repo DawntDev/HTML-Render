@@ -1,8 +1,8 @@
 const imgs = [
-    "static/img/bongo-cat-codes-2jamming.png",
-    "static/img/computer-store-landing-page.png",
-    "static/img/generative-kong-summit-patterns.png",
-    "static/img/responsive-social-platform-ui.png"
+    "static/img/bongo-cat-codes-2jamming.webp",
+    "static/img/computer-store-landing-page.webp",
+    "static/img/generative-kong-summit-patterns.webp",
+    "static/img/responsive-social-platform-ui.webp"
 ];
 
 
@@ -19,6 +19,51 @@ window.onload = function () {
     }, 5000);
 };
 
+// Options
+let optionsButtons = Array.from(document.querySelector("div#document").childNodes).filter(node => node.type === "button");
+
+let elements = document.querySelectorAll("div.option");
+let lastActive = document.querySelector("div#document > button.active");
+
+optionsButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (!btn.classList.contains("active")) {
+            btn.classList.add("active");
+            lastActive.classList.remove("active");
+
+            elements[optionsButtons.indexOf(btn)].style = "display: block";
+            elements[optionsButtons.indexOf(lastActive)].style = "display: none";
+
+            lastActive = btn;
+        };
+    });
+});
+
+// Requests
+let requestButtons = Array.from(document.querySelector("div#btn-request").childNodes);
+
+let render = document.querySelector("table#request-render");
+let urlToImage = document.querySelector("table#request-urlToImage");
+
+requestButtons.forEach(btn => {
+    if (btn.type === "button") {
+        btn.addEventListener("click", () => {
+            if (!btn.classList.contains("active")) {
+                btn.classList.add("active");
+
+                if (requestButtons.indexOf(btn) === 1) {
+                    requestButtons[3].classList.remove("active");
+                    render.style = "display: table";
+                    urlToImage.style = "display: none";
+                } else {
+                    requestButtons[1].classList.remove("active");
+                    render.style = "display: none";
+                    urlToImage.style = "display: table";
+                };
+            };
+        });
+    };
+});
 
 // TSParticles
 tsParticles.load("tsparticles", {

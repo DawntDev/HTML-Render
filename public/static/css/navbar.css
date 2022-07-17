@@ -130,7 +130,7 @@ header > nav > ul > li#start > a:hover::after {
     }
 }
 
-@media (max-width: 565px) {
+@media (max-width: 568px) {
     header { height: 12rem; }
 
     header > nav > ul > li.element { margin: 0 .5rem; }

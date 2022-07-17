@@ -16,7 +16,7 @@ b {
 }
 
 a.button-link {
-     width: calc(25% + 5vw);
+    width: calc(25% + 5vw);
     font-size: 1.125rem;
     line-height: 1.5rem;
     border-radius: 10px;

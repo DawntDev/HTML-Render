@@ -1,10 +1,9 @@
-body > section {
+section {
     width: 100%;
     border-bottom: 1px solid #e5e7eb;
 }
 
-
-body > section > div.container {
+div.row-box {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,7 +12,43 @@ body > section > div.container {
     padding: 6rem 3rem;
 }
 
-body > section > div.container > div.left {
+div.centered-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 6rem 3rem;
+}
+
+div.code-box {
+    width: 70%;
+    padding: 1rem 3rem;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+}
+
+tbody#lang-json > tr > td.tb-1{ padding-left: 2rem;}
+tbody#lang-json > tr > td > span {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: #2f353d;
+}
+tbody#lang-json > tr > td > span.bracket { color: #6366f1; }
+tbody#lang-json > tr > td > span.square-bracket { color: #ea63f1; }
+tbody#lang-json > tr > td > span.comma { color: #2f353d; }
+tbody#lang-json > tr > td > span.key::before { content: '"'; color: #2f353d;}
+tbody#lang-json > tr > td > span.key::after { content: '":'; color: #2f353d;}
+tbody#lang-json > tr > td > span.key { 
+    color: #6366f1;
+    font-weight: 700;
+}
+tbody#lang-json > tr > td > span.string { color: #16a278; }
+tbody#lang-json > tr > td > span.float { color: #caa718; }
+
+
+div.aside {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -22,8 +57,8 @@ body > section > div.container > div.left {
     margin-right: 2rem;
 }
 
-/* Section: initial */
-body > section#init > div.container > div.left > h2 {
+/* ------------------------------------------ Section: initial ------------------------------------------ */
+section#init > div.row-box > div.aside > h2 {
     font-size: calc(1.5rem + 1vw);
     line-height: 2.75rem;
     font-weight: 700;
@@ -31,7 +66,7 @@ body > section#init > div.container > div.left > h2 {
     margin-bottom: 1rem;
 }
 
-body > section#init > div.container > div.left > p {
+section#init > div.row-box > div.aside > p {
     font-size: 1.125rem;
     line-height: 1.5rem;
     width: 90%;
@@ -39,10 +74,10 @@ body > section#init > div.container > div.left > p {
     margin-bottom: 1.5rem;
 }
 
-body > section#init > div.container > div#example {
+section#init > div.row-box > div#example {
     width: 50%;
     height: calc(7rem + 20vw);
-    background-image: url("http://127.0.0.1:5000/static/img/bongo-cat-codes-2jamming.png");
+    background-image: url("http://127.0.0.1:5000/static/img/bongo-cat-codes-2jamming.webp");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -51,20 +86,13 @@ body > section#init > div.container > div#example {
     transition: all .3s ease-in-out;
 }
 
-body > section#init > div.container > div#example > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-}
-
 @media (max-width: 968px) {
-    body > section#init > div.container {
+    section#init > div.row-box {
         flex-direction: column; 
         padding: 5rem 0;
     }
 
-    body > section#init > div.container > div.left {
+    section#init > div.row-box > div.aside {
         width: 100%; 
         margin: 0 0 4rem;
         text-align: justify; 
@@ -72,12 +100,12 @@ body > section#init > div.container > div#example > img {
         justify-content: center;
     }
 
-    body > section#init > div.container > div.left > a {
+    section#init > div.row-box > div.aside > a {
         width: 75%;
         margin: 0 3rem;
     }
 
-    body > section#init > div.container > div#example {
+    section#init > div.row-box > div#example {
         width: 90%;
         height: calc(12rem + 20vw);
     }
@@ -85,24 +113,205 @@ body > section#init > div.container > div#example > img {
 }
 
 @media (max-width: 548px) {
-    body > section#init > div.container > div.left > h2 {
+    section#init > div.row-box > div.aside > h2 {
         font-size: calc(1.25rem + 1vw);
         line-height: 1.75rem;
         font-weight: 700;
         margin-bottom: 1rem;
     }   
 
-    body > section#init > div.container > div.left > p {
+    section#init > div.row-box > div.aside > p {
         font-size: 1rem;
         line-height: 1.5rem;
         width: 90%;
         margin-bottom: 1.5rem;
     }
 }
+/* ------------------------------------------ Section: initial ------------------------------------------ */
+
+/* ------------------------------------------ Section: how-to-use ------------------------------------------ */
+section#how-to-use > div.centered-box > h3 {
+    font-size: calc(1.5rem + 1vw);
+    line-height: 2.75rem;
+    font-weight: 700;
+    color: #2f353d;
+    margin-bottom: 1rem;
+}
+
+section#how-to-use > div.centered-box > p {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    width: 90%;
+    color: #6366f1;
+    margin-bottom: 1.5rem;
+}
+
+section#how-to-use > div.centered-box > div.row-box {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 26rem;
+    height: 12rem;
+    margin: 1.25rem 1rem;
+    padding: 1.8rem;
+    background: #f3f4f6;
+    border-radius: 20px;
+    outline: 1px solid #e5e7eb;
+    transition: all 0.5s ease-out;
+    overflow: visible;
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card:hover {
+    outline: 2px solid #6366f1;
+    box-shadow: 0 4px 18px 0 rgba(99, 102, 241, 0.25);
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card > div.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card > div.icon > svg {
+    width: calc(1.5rem + 1vw);
+    height: calc(1.5rem + 1vw);
+    fill: #6366f1;
+    margin-right: .5rem;
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card > div.icon > h4 {
+    font-size: calc(.75rem + 1vw);
+    line-height: 1.5rem;
+    font-weight: 500;
+    color: #2f353d;
+}
+
+section#how-to-use > div.centered-box > div.row-box > div.card > p {
+    width: 90%;
+    color: #6a6e73;
+}
 
 
-/* Section: GitHub */
-body > section#github > div.container > div.left > div.icon {
+@media (max-width: 568px) {
+    section#how-to-use > div.centered-box > div.row-box > div.card {
+        height: calc(12rem + 20vw);
+        justify-content: center;
+        margin: 1rem 1rem;
+    }
+}
+
+@media (max-width: 468px) {
+    section#how-to-use > div.centered-box > div.row-box > div.card > div.icon {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    section#how-to-use > div.centered-box > div.row-box > div.card > div.icon > svg {
+        width: calc(2rem + 1.5vw);
+        height: calc(2rem + 1.5vw);
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    section #how-to-use > div.centered-box > div.row-box > div.card > div.icon > h4 {
+        font-size: calc(1rem + 1vw);
+        line-height: 1rem;
+    }
+
+    section#how-to-use > div.centered-box > div.row-box > div.card p { display: none;}
+}
+/* ------------------------------------------ Section: how-to-use ------------------------------------------ */
+
+/* ------------------------------------------ Section: documentation ------------------------------------------ */
+section#documentation > div.row-box > div.aside:nth-child(1) { width: 70%; }
+section#documentation > div.row-box > div.aside > div.option {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: left;
+    transition: all 0.5s ease-out;
+}
+
+section#documentation > div.row-box > div.aside > div.option > h4 {
+    font-size: calc(1.5rem + 1vw);
+    line-height: 2.75rem;
+    font-weight: 700;
+    color: #2f353d;
+    margin-bottom: 1rem;
+}
+
+section#documentation > div.row-box > div.aside > div.option > p {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    width: 90%;
+    color: #6a6e73;
+    margin-bottom: 2rem;
+}
+
+section#documentation > div.row-box > div.aside > div.option > div#btn-request > button {
+    display: inline;
+    width: 25%;
+    margin-right: 1rem;
+    background: #e5e7eb;
+    color: #2f353d;
+    border: none;
+    border-radius: 5px;
+    height: 3rem;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+section#documentation > div.row-box > div.aside > div.option > div#btn-request > button:hover,
+section#documentation > div.row-box > div.aside > div.option > div#btn-request > button.active {
+    background: #6366f1;
+    color: #f3f4f6;
+}
+
+section#documentation > div.row-box > div.aside:nth-child(2) { margin-left: 2rem; width: 30%; }
+section#documentation > div.row-box > div.aside > h3 {
+    font-size: calc(1.5rem + 1vw);
+    line-height: 2.75rem;
+    font-weight: 700;
+    color: #2f353d;
+    margin-bottom: 1rem;
+}
+
+section#documentation > div.row-box > div.aside > div#document > button {
+    display: block;
+    margin: 1rem 0 ;
+    padding: 1.5rem;
+    width: 75%;
+    background: #e5e7eb;
+    color: #2f353d;
+    border: none;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+}
+
+section#documentation > div.row-box > div.aside > div#document > button:hover,
+section#documentation > div.row-box > div.aside > div#document > button.active {
+    background: #6366f1;
+    color: #f3f4f6;
+}
+/* ------------------------------------------ Section: documentation ------------------------------------------ */
+
+/* ------------------------------------------ Section: github ------------------------------------------ */
+section#github > div.row-box > div.aside > div.icon {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -111,20 +320,20 @@ body > section#github > div.container > div.left > div.icon {
     margin-bottom: 1rem;
 }
 
-body > section#github > div.container > div.left > div.icon > svg {
+section#github > div.row-box > div.aside > div.icon > svg {
     width: 5rem;
     height: 5rem;
     margin-right: 1rem;
 }
 
-body > section#github > div.container > div.left > div.icon > h3 {
+section#github > div.row-box > div.aside > div.icon > h4 {
     font-size: calc(2rem + 1vw);
     line-height: 2.75rem;
     font-weight: 700;
     color: #2f353d;
 }
 
-body > section#github > div.container > div.left > p {
+section#github > div.row-box > div.aside > p {
     font-size: 1.125rem;
     line-height: 1.5rem;
     text-align: left;
@@ -133,30 +342,30 @@ body > section#github > div.container > div.left > p {
     margin-bottom: 1.5rem;
 }
 
-body > section#github > div.container > div#tsparticles {
+section#github > div.row-box > div#tsparticles {
     width: 50%;
     height: calc(7rem + 20vw);
 }
 
 @media (max-width: 867px) {
-    body > section#github > div.container > div.left > div.icon {
+    section#github > div.row-box > div.aside > div.icon {
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
     
-    body > section#github > div.container > div.left > div.icon > svg {
+    section#github > div.row-box > div.aside > div.icon > svg {
         width: 5rem;
         height: 5rem;
         margin-right: 0;
     }
     
-    body > section#github > div.container > div.left > div.icon > h3 {
+    section#github > div.row-box > div.aside > div.icon > h4 {
         font-size: calc(1.5rem + 1vw);
         margin-bottom: 1rem;
     }
     
-    body > section#github > div.container > div.left > p {
+    section#github > div.row-box > div.aside > p {
         font-size: 1rem;
         line-height: 1.5rem;
         text-align: justify;
@@ -164,7 +373,7 @@ body > section#github > div.container > div#tsparticles {
         margin-bottom: 1.5rem;
     }
     
-    body > section#github > div.container > div.left > a {
+    section#github > div.row-box > div.aside > a {
         width: 75%;
         margin: 0 1.5rem;
     }
@@ -174,10 +383,10 @@ body > section#github > div.container > div#tsparticles {
 
 @media (max-width: 696px) {
 
-    body > section#github > div.container { padding: 5rem 0; }
-    body > section#github div.container > div#tsparticles { display: none; }
+    section#github > div.row-box { padding: 5rem 0; }
+    section#github div.row-box > div#tsparticles { display: none; }
     
-    body > section#github > div.container > div.left {
+    section#github > div.row-box > div.aside {
         width: 90%; 
         margin: 0 0 4rem;
         text-align: justify; 
@@ -186,3 +395,4 @@ body > section#github > div.container > div#tsparticles {
     }
 
 }
+/* ------------------------------------------ Section: github ------------------------------------------ */
