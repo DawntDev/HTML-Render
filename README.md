@@ -31,10 +31,10 @@ I created this API because I wanted to put into practice my knowledge with the [
 ## Overview
 
 <div align="center">
-    <img src="./public/static/img/bongo-cat-codes-2jamming.png" width="35%" raw=false>
-    <img src="./public/static/img/computer-store-landing-page.png" width="35%" raw=false>
-    <img src="./public/static/img/generative-kong-summit-patterns.png" width="35%" raw=false>
-    <img src="./public/static/img/responsive-social-platform-ui.png" width="35%" raw=false>
+    <img src="./public/static/img/bongo-cat-codes-2jamming.webp" width="35%" raw=false>
+    <img src="./public/static/img/computer-store-landing-page.webp" width="35%" raw=false>
+    <img src="./public/static/img/generative-kong-summit-patterns.webp" width="35%" raw=false>
+    <img src="./public/static/img/responsive-social-platform-ui.webp" width="35%" raw=false>
 </div>
 
 The entire project was created with [React](https://reactjs.org/) in addition to the use of certain repositories such as axios and cors-anywhere for certain vital aspects of the project.

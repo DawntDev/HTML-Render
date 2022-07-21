@@ -37,12 +37,12 @@ header > div.title > div.icon > svg {
     margin: 27%;
 }
 
-header > div.title > h1 {
+header > div.title > h1 > a {
     font-size: 2rem;
     font-weight: 500;
     line-height: 2.25rem;
     color: #111827;
-    cursor: default;
+    cursor: pointer;
 }
 
 header > nav > ul > li.element {
@@ -55,6 +55,21 @@ header > nav > ul > li.element > a {
     font-size: 1rem;
     line-height: 1.5rem;
     transition: all .25s ease-in;
+}
+
+header > nav > ul > li.element > button {
+    width: 10rem;
+    height: 3rem;   
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: all .25s ease-in;
+}
+
+header > nav > ul > li.element > button:hover,
+header > nav > ul > li.element.active > button {
+    background-color: #6867EA;
+    color: #fff;
 }
 
 header > nav > ul > li.element:hover:not(#start) > a {
@@ -108,6 +123,8 @@ header > nav > ul > li#start > a:hover::after {
         height: 10rem;
         padding: 1.5rem;
     }
+
+    header > nav > ul > li.element > button { margin-top: 1rem;}
 }
 
 @media (max-width: 696px) {
@@ -135,6 +152,7 @@ header > nav > ul > li#start > a:hover::after {
 
     header > nav > ul > li.element { margin: 0 .5rem; }
     header > nav > ul > li.element > a { font-size: calc(10px + 1vw); line-height: 1rem; }
+    header > nav > ul > li.element > button { width: 100%; height: 3rem;  margin: 0 0 1rem 0;} 
 
     header > nav > ul > li#start {
         display: block;

@@ -29,23 +29,23 @@ div.code-box {
     border-radius: 10px;
 }
 
-tbody#lang-json > tr > td.tb-1{ padding-left: 2rem;}
-tbody#lang-json > tr > td > span {
+tbody.lang-json > tr > td.tb-1{ padding-left: 2rem;}
+tbody.lang-json > tr > td > span {
     font-size: 1.125rem;
     line-height: 1.5rem;
     color: #2f353d;
 }
-tbody#lang-json > tr > td > span.bracket { color: #6366f1; }
-tbody#lang-json > tr > td > span.square-bracket { color: #ea63f1; }
-tbody#lang-json > tr > td > span.comma { color: #2f353d; }
-tbody#lang-json > tr > td > span.key::before { content: '"'; color: #2f353d;}
-tbody#lang-json > tr > td > span.key::after { content: '":'; color: #2f353d;}
-tbody#lang-json > tr > td > span.key { 
+tbody.lang-json > tr > td > span.bracket { color: #6366f1; }
+tbody.lang-json > tr > td > span.square-bracket { color: #ea63f1; }
+tbody.lang-json > tr > td > span.comma { color: #2f353d; }
+tbody.lang-json > tr > td > span.key::before { content: '"'; color: #2f353d;}
+tbody.lang-json > tr > td > span.key::after { content: '":'; color: #2f353d;}
+tbody.lang-json > tr > td > span.key { 
     color: #6366f1;
     font-weight: 700;
 }
-tbody#lang-json > tr > td > span.string { color: #16a278; }
-tbody#lang-json > tr > td > span.float { color: #caa718; }
+tbody.lang-json > tr > td > span.string { color: #16a278; }
+tbody.lang-json > tr > td > span.float { color: #caa718; }
 
 
 div.aside {
@@ -259,6 +259,55 @@ section#documentation > div.row-box > div.aside > div.option > p {
     margin-bottom: 2rem;
 }
 
+section#documentation > div.row-box > div.aside > div.option > div.methods {
+    width: 90%;
+    margin-bottom: 2rem;
+}
+section#documentation > div.row-box > div.aside > div.option > div.methods > strong {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    color: #2f353d;
+}
+
+section#documentation > div.row-box > div.aside > div.option > div.methods > p {
+    display: inline;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    background: #6366f1;
+    color: #f3f4f6;
+    border-radius: 8px;
+    padding: .5rem;
+    margin-right: 1rem;
+}
+
+section#documentation > div.row-box > div.aside > div.option > table { width: 90%; }
+section#documentation > div.row-box > div.aside > div.option > table > thead > tr > th {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    color: #2f353d;
+    padding: 0 2rem 1rem 0;
+}
+
+section#documentation > div.row-box > div.aside > div.option > table > tbody > tr > td {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: #6a6e73;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 2rem 1rem 0;
+}
+
+section#documentation > div.row-box > div.aside > div.option > table > tbody > tr > td > b { display: block; margin: .5rem 0;}
+section#documentation > div.row-box > div.aside > div.option > table > tbody > tr > td.description { width: 15rem;}
+section#documentation > div.row-box > div.aside > div.option > table > tbody.two-columns > tr > td.description { width: 75%; padding: 1rem 0;}
+section#documentation > div.row-box > div.aside > div.option > table > tbody > tr > td:first-child {
+    font-weight: 700;
+    color: #2f353d;
+}
+
 section#documentation > div.row-box > div.aside > div.option > div#btn-request > button {
     display: inline;
     width: 25%;
@@ -292,13 +341,13 @@ section#documentation > div.row-box > div.aside > div#document > button {
     display: block;
     margin: 1rem 0 ;
     padding: 1.5rem;
-    width: 75%;
+    width: 100%;
     background: #e5e7eb;
     color: #2f353d;
     border: none;
     border-radius: 5px;
     transition: all .3s ease-in-out;
-    font-size: 1.125rem;
+    font-size: calc(.25rem + .9vw);
     line-height: 1.5rem;
     cursor: pointer;
 }
@@ -308,6 +357,24 @@ section#documentation > div.row-box > div.aside > div#document > button.active {
     background: #6366f1;
     color: #f3f4f6;
 }
+
+
+@media (max-width: 1024px) {
+    section#documentation > div.row-box {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    section#documentation > div.row-box > div.aside:nth-child(1),
+    section#documentation > div.row-box > div.aside:nth-child(2) { width: 100%; }
+    section#documentation > div.row-box > div.aside > div.option {
+
+        margin-top: 2rem;
+    }
+}
+    
 /* ------------------------------------------ Section: documentation ------------------------------------------ */
 
 /* ------------------------------------------ Section: github ------------------------------------------ */

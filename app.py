@@ -36,4 +36,4 @@ for route in ROOT:
 if __name__ == "__main__":
     Timer(.25, HTMLRender.init, args=(PATH,)).start()
     print("\n\x1b[1;32m[Flask]\x1b[0m - Initializing...\n")
-    app.run()
+    app.run(debug=True)

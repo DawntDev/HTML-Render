@@ -27,7 +27,9 @@
                         d="M2 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM0 2a2 2 0 0 1 3.937-.5h8.126A2 2 0 1 1 14.5 3.937v8.126a2 2 0 1 1-2.437 2.437H3.937A2 2 0 1 1 1.5 12.063V3.937A2 2 0 0 1 0 2zm2.5 1.937v8.126c.703.18 1.256.734 1.437 1.437h8.126a2.004 2.004 0 0 1 1.437-1.437V3.937A2.004 2.004 0 0 1 12.063 2.5H3.937A2.004 2.004 0 0 1 2.5 3.937zM14 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM2 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                 </svg>
             </div>
-            <h1>HTML-Render</h1>
+            <h1>
+                <a href="/">HTML-Render</a>
+            </h1>
         </div>
         <nav>
             <ul>
@@ -41,7 +43,7 @@
                     <a href="./#github">GitHub</a>
                 </li>
                 <li id="start" class="element">
-                    <a href="{{ url_for('new_render') }}">
+                    <a href="{{ url_for('new_render') }}" aria-label="Create a render">
                         Start
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
@@ -143,7 +145,7 @@
                     </div>
                     <div class="code-box">
                         <table id="request-render">
-                            <tbody id="lang-json">
+                            <tbody class="lang-json">
                                 <tr>
                                     <td>
                                         <span class="bracket">{</span>
@@ -223,7 +225,7 @@
                             </tbody>
                         </table>
                         <table id="request-urlToImage" style="display: none;">
-                            <tbody id="lang-json">
+                            <tbody class="lang-json">
                                 <tr>
                                     <td>
                                         <span class="bracket">{</span>
@@ -287,11 +289,189 @@
                 </div>
                 <div class="option" style="display: none;">
                     <h4>/api/v1/render</h4>
-                    <p></p>
+                    <p>
+                        Using this method you will be able to render your own code, and get the render in the format
+                        that best suits your needs.
+                    </p>
+                    <div class="methods">
+                        <strong>Methods</strong>
+                        <p>POST</p>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lang-json">
+                            <tr>
+                                <td>elements</td>
+                                <td class="description">The elements that you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>css</td>
+                                <td class="description">The CSS that you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"h1 { color: red; }"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>js</td>
+                                <td class="description">The JavaScript that you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"console.log('Hello World')"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>selector</td>
+                                <td class="description">The CSS selector of the element you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"body > div.component"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>format</td>
+                                <td class="description">The format of the image you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <b>Only one</b>
+                                    <span class="string">"png", "jpg", "bin", "base64"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>size</td>
+                                <td class="description">The size of the image you want to render</td>
+                                <td>
+                                    <span class="square-bracket">array[</span>
+                                    <span class="string">string</span>
+                                    <span class="comma">, </span>
+                                    <span class="string">string</span>
+                                    <span class="square-bracket">]</span>
+                                </td>
+                                <td>
+                                    <span class="square-bracket">[</span>
+                                    <span class="string">"1920"</span>
+                                    <span class="comma">, </span>
+                                    <span class="string">"1080"</span>
+                                    <span class="square-bracket">]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>timeout</td>
+                                <td class="description">The timeout of the request</td>
+                                <td>
+                                    <span class="float">float</span>
+                                </td>
+                                <td>
+                                    <span class="float">2.5</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="option" style="display: none;">
                     <h4>/api/v1/urlToImage</h4>
-                    <p></p>
+                    <p>
+                        With this method you can render web pages live. This through the URL of the page, and thus
+                        obtain a representation in
+                        the format you need.
+                    </p>
+                    <div class="methods">
+                        <strong>Methods</strong>
+                        <p>GET</p>
+                        <p>POST</p>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lang-json">
+                            <tr>
+                                <td>url</td>
+                                <td class="description">The URL of the page you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"https://www.google.com"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>selector</td>
+                                <td class="description">The CSS selector of the element you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <span class="string">"body > div.component"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>format</td>
+                                <td class="description">The format of the image you want to render</td>
+                                <td>
+                                    <span class="string">string</span>
+                                </td>
+                                <td>
+                                    <b>Only one</b>
+                                    <span class="string">"png", "jpg", "bin", "base64"</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>size</td>
+                                <td class="description">The size of the image you want to render</td>
+                                <td>
+                                    <span class="square-bracket">array[</span>
+                                    <span class="string">string</span>
+                                    <span class="comma">, </span>
+                                    <span class="string">string</span>
+                                    <span class="square-bracket">]</span>
+                                </td>
+                                <td>
+                                    <span class="square-bracket">[</span>
+                                    <span class="string">"1920"</span>
+                                    <span class="comma">, </span>
+                                    <span class="string">"1080"</span>
+                                    <span class="square-bracket">]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>timeout</td>
+                                <td class="description">The timeout of the request</td>
+                                <td>
+                                    <span class="float">float</span>
+                                </td>
+                                <td>
+                                    <span class="float">2.5</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="option" style="display: none;">
                     <h4>Errors</h4>
@@ -300,6 +480,50 @@
                         through this list you will find some of the most common mistakes. So that you can resolve them
                         as soon as possible.
                     </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Error</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="two-columns">
+                            <tr>
+                                <td>Missing key</td>
+                                <td class="description">
+                                    In the body of your request is missing some key that is necessary for the rendering
+                                    of your request.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Invalid type for key</td>
+                                <td class="description">
+                                    The key value is not of the correct type, so your request cannot be accepted for
+                                    rendering.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>The key is empty</td>
+                                <td class="description">
+                                    You have provided a key with a value but its value is empty.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Invalid format</td>
+                                <td class="description">
+                                    The format of the image you want to render is not valid.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Error while rendering the page</td>
+                                <td class="description">
+                                    Some internal error has occurred while trying to render your request. This kind of
+                                    errors can be considered as bugs, so
+                                    please report them.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="aside">
@@ -339,7 +563,26 @@
         </div>
     </section>
     <footer>
-
+        <div class="container">
+            <div class="aside">
+                <p>
+                    &copy; Dawnt 2022 - All rights reserved.
+                </p>
+            </div>
+            <div class="aside">
+                <p>
+                    <a href="https://www.linkedin.com/in/dawnt-dev/" target="_blank">CodeWars</a>
+                </p>
+                <p>
+                    <a href="https://github.com/DawntDev" target="_blank">GitHub</a>
+                </p>
+                <p>
+                    <a href="https://twitter.com/DawntDev" target="_blank">Discord</a>
+                </p>
+                <p>
+                    <a href="https://www.instagram.com/dawntdev/" target="_blank">Instagram</a>
+                </p>
+            </div>
     </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.3/tsparticles.bundle.min.js"

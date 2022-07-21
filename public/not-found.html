@@ -9,18 +9,20 @@
         content="HTML-Render is an API that allows you to render HTML and CSS code to get a physical representation of the DOM">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
-    <title>HTML-Render | Error: {{ error.code }}</title>
+    <title>HTML-Render | Not Found</title>
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/not-found.css') }}">
 </head>
 
 <body>
-    <h1>Error: {{ error.code }}</h1>
-    <ul>
-        {% for message in error.messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+    <div title="404" class="title">404</div>
+    <div class="text">
+        <h1>Page not found</h1>
+        <p id="message">
+            The page you are looking for does not exist.
+            Returning to the start in 5 seconds...
+        </p>
+    </div>
 </body>
-
+<script src="{{ url_for('static', filename='js/not-found.js') }}"></script>
 </html>
