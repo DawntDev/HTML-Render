@@ -1,3 +1,5 @@
+const path = window.location.origin;
+document.querySelector(":root").style.setProperty("--image", `url(${path}/static/img/bongo-cat-codes-2jamming.webp)`);
 const imgs = [
     "static/img/bongo-cat-codes-2jamming.webp",
     "static/img/computer-store-landing-page.webp",
@@ -14,7 +16,7 @@ window.onload = function () {
     let i = 1;
     setInterval(() => {
         let src = imgs[i];
-        container.style.backgroundImage = `url(http://127.0.0.1:5000/${src})`;
+        container.style.backgroundImage = `url(${path}/${src})`;
         i = (i < len) ? i + 1 : 0;
     }, 5000);
 };

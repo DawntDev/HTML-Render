@@ -1,0 +1,67 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #e5e7eb;
+}
+
+footer > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 2rem 0 .5rem;
+}
+
+footer > div > a {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 .5rem;
+}
+
+footer > div > a > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #6b7280;
+    transition: fill 0.3s ease-in-out;
+}
+
+footer > div > a[aria-label="CodeWars"] > svg:hover {
+    cursor: pointer;
+    fill: #b8341c;
+}
+
+footer > div > a[aria-label="Spotify"] > svg:hover,
+footer > div > a[aria-label="Spotify (en inglés)"] > svg:hover {
+    cursor: pointer;
+    fill: #1db954;
+}
+
+footer > div > a[aria-label="Discord"] > svg:hover,
+footer > div > a[aria-label="Discordia"] > svg:hover {
+    cursor: pointer;
+    fill: #5865F2;
+}
+
+footer > div > a[aria-label="GitHub"] > svg:hover {
+    cursor: pointer;
+    fill: #181717;
+}
+
+footer > p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    line-height: 1.2rem;
+    letter-spacing: 0.5px;
+    word-spacing: 1px;
+    color: #6b7280;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: .5rem 1.5rem;
+}

@@ -36,66 +36,87 @@
         <nav>
             <ul>
                 <li class="element active">
-                    <button>/api/v1/urlToImage</button>
+                    <button type="button">/api/v1/urlToImage</button>
                 </li>
                 <li class="element">
-                    <button>/api/v1/render</button>
+                    <button type="button">/api/v1/render</button>
                 </li>
             </ul>
         </nav>
     </header>
     <div class="container">
-        <h3>api/v1/urlToImage</h3>
-        <form class="active" action="{{ url_for('url_to_image') }}" method="post" enctype="text/plain">
-            <div class="input-group">
-                <input required="" type="text" name="url" autocomplete="off" class="input">
-                <label for="url" class="user-label">URL</label>
-            </div>
-            <div class="input-group">
-                <input required="" type="text" name="selector" autocomplete="off" class="input">
-                <label for="selector" class="user-label">Selector</label>
-            </div>
-            <div class="input-group">
-                <select name="format" class="input">
-                    <option value="png">png</option>
-                    <option value="jpg">jpg</option>
-                    <option value="bin">bin</option>
-                    <option value="base64">base64</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <input required="" type="text" name="size" autocomplete="off" class="input">
-                <label for="size" class="user-label">Size</label>
-            </div>
-            <div class="input-group">
-                <input required="" type="text" name="timeout" autocomplete="off" class="input">
-                <label for="timeout" class="user-label">Timeout</label>
-            </div>
-            <button type="submit" class="button">Render</button>
-        </form>
-        <form class="" action="" method="post" style="display: block;">
-            <label for="html">HTML</label>
-            <div class="drag">
-                <textarea name="html" id="html" cols="30" rows="10"></textarea>
-            </div>
-            <label for="css">CSS</label>
-            <div class="drag">
-                <textarea name="css" id="css" cols="30" rows="10"></textarea>
-            </div>
-            <label for="format">Format</label>
-            <select name="format" id="format">
-                <option value="png">png</option>
-                <option value="jpg">jpg</option>
-                <option value="bin">bin</option>
-                <option value="base64">base64</option>
-            </select>
-            <label for="size">Size</label>
-            <input type="text" name="size" id="size" placeholder="100x100">
-            <label for="timeout">Timeout</label>
-            <input type="number" name="timeout" id="timeout" placeholder="2.5">
-            <button type="submit">Render</button>
-        </form>
+        <div class="form">
+            <h3>api/v1/urlToImage</h3>
+            <form id="urlToImage"> 
+                <div class="input">
+                    <label for="url">URL</label>
+                    <input type="text" name="url" id="url" placeholder="https://www.example.com" required>
+                </div>
+                <div class="input">
+                    <label for="selector">Selector</label>
+                    <input type="text" name="selector" id="selector" placeholder="#example">
+                </div>
+                <div class="input">
+                    <label for="format">Format</label>
+                    <select name="format" id="format">
+                        <option value="png">png</option>
+                        <option value="jpg">jpg</option>
+                        <option value="bin">bin</option>
+                        <option value="base64">base64</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="size">Size</label>
+                    <input type="text" name="size" id="size" placeholder="100x100">
+                </div>
+                <div class="input">
+                    <label for="timeout">Timeout</label>
+                    <input type="text" name="timeout" id="timeout" placeholder="2.5">
+                </div>
+                <button class="button" type="submit">Render</button>
+            </form>
+        </div>
+        <div class="form hidden">
+            <h3>api/v1/render</h3>
+            <form id="render">
+                <div class="input">
+                    <label for="html">HTML</label>
+                    <input type="file" name="html" id="html" accept="text/html">
+                </div>
+                <div class="input">
+                    <label for="css">CSS</label>
+                    <input type="file" name="css" id="css" accept="text/css">
+                </div>
+                <div class="input">
+                    <label for="js">JavaScript</label>
+                    <input type="file" name="js" id="js" accept="text/javascript">
+                </div>
+                <div class="input">
+                    <label for="selector">Selector</label>
+                    <input type="text" name="selector" id="selector" placeholder="#example">
+                </div>
+                <div class="input">
+                    <label for="format">Format</label>
+                    <select name="format" id="format">
+                        <option value="png">png</option>
+                        <option value="jpg">jpg</option>
+                        <option value="bin">bin</option>
+                        <option value="base64">base64</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="size">Size</label>
+                    <input type="text" name="size" id="size" placeholder="100x100">
+                </div>
+                <div class="input">
+                    <label for="timeout">Timeout</label>
+                    <input type="text" name="timeout" id="timeout" placeholder="2.5">
+                </div>
+                <button class="button" type="submit">Render</button>
+            </form>
+        </div>
     </div>
 </body>
+<script src="{{ url_for('static', filename='js/new-render.js') }}"></script>
 
 </html>

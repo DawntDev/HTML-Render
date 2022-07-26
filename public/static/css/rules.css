@@ -1,0 +1,56 @@
+div#rules {
+    width: 100%;
+    height: 77vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div#rules > div.rule {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+    width: 15rem;
+    height: 15rem;
+    margin: 2rem 2rem;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 255, .2);
+    border-radius: 5px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+    transition: all 0.3s ease-in-out;
+}
+
+div#rules > div.rule:hover {
+    box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
+}
+
+div#rules > div.rule > div.methods {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+div#rules > div.rule > div.methods > p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    color: #2f353d;
+    margin: 0 1rem;
+}
+
+div#rules > div.rule > p {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2f353d;
+    margin: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+div#rules > div.rule:hover > p {
+    color: #6366f1;
+}
