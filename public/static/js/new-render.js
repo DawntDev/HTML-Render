@@ -42,7 +42,7 @@ document.getElementById("render").addEventListener("submit", (e) => {
         selector: document.getElementById("selector").value,
         format: document.getElementById("format").value,
         size: document.getElementById("size").value !== "" ? document.getElementById("size").value.split("x") : null,
-        timeout: document.getElementById("timeout").value
+        timeout: parseFloat(document.getElementById("timeout").value).toFixed(1)
     }
 
     clearForm(data);
@@ -79,7 +79,7 @@ document.getElementById("urlToImage").addEventListener("submit", (e) => {
         selector: document.getElementById("selector").value,
         format: document.getElementById("format").value,
         size: document.getElementById("size").value !== "" ? document.getElementById("size").value.split("x") : null,
-        timeout: document.getElementById("timeout").value,
+        timeout: parseFloat(document.getElementById("timeout").value).toFixed(1),
     }
 
     clearForm(data);
