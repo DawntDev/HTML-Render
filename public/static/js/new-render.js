@@ -84,7 +84,7 @@ document.getElementById("render").addEventListener("submit", (e) => {
         js: document.getElementById("js").files[0],
         selector: document.getElementById("render-selector").value,
         format: document.getElementById("render-format").value,
-        size: document.getElementById("render-size").value !== "" ? document.getElementById("size").value.split("x") : null,
+        size: document.getElementById("render-size").value !== "" ? document.getElementById("render-size").value.split("x") : null,
         timeout: Number(document.getElementById("render-timeout").value) + (.1 * [10 ** -5])
     }
     clearForm(data);
@@ -131,7 +131,7 @@ document.getElementById("urlToImage").addEventListener("submit", (e) => {
         url: document.getElementById("url").value,
         selector: document.getElementById("urlToImage-selector").value,
         format: document.getElementById("urlToImage-format").value,
-        size: document.getElementById("urlToImage-size").value !== "" ? document.getElementById("size").value.split("x") : null,
+        size: document.getElementById("urlToImage-size").value !== "" ? document.getElementById("urlToImage-gsize").value.split("x") : null,
         timeout: Number(document.getElementById("urlToImage-timeout").value) + (.1 * [10 ** -5]),
     }
     clearForm(data);
