@@ -17,3 +17,7 @@ selenium == 4.3.0
 
 # html-render\src\html_render.py: 4
 webdriver_manager == 3.8.0
+
+
+# Other packages:
+gunicorn == 20.1.0
