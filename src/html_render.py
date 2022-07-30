@@ -14,17 +14,20 @@ class HTMLRender:
         A method to initialize the HTMLRender class.
         """
         print("\n\n\x1b[1;32m[HTMLRender]\x1b[0m - Initializing...")
-        __options = webdriver.EdgeOptions()
+        __options = webdriver.ChromeOptions()
         __options.headless = True
+        __options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        __options.add_argument("--disable-dev-shm-usage")
+        __options.add_argument("--no-sandbox")
 
         HTMLRender.__PATH = PATH
         HTMLRender.__LOGS = os.path.join(os.getcwd(), "src", "errors.log")
         
-        HTMLRender.__driver = webdriver.Edge(
-            service=Service(EdgeChromiumDriverManager().install()),
-            options=__options,
+        HTMLRender.__driver = webdriver.Chrome(
+            executable_path=os.environ.get("CHROMEDRIVER_PATH"), 
+            options=__options
         )
-
+        
         HTMLRender.__getSize = lambda direct, select: (
             HTMLRender.__driver.execute_script(
                 f"return document.querySelector('{select}').parentNode.scroll{direct}"

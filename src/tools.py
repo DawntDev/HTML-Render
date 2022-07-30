@@ -4,7 +4,7 @@ import os
 import uuid
 import time
 
-LOCAL = "http://localhost:5000"
+LOCAL = "http://localhost:8080"
 PATH = os.path.join(os.getcwd(), "public", "builds")
 TYPES = {
     "img": {
