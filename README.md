@@ -37,59 +37,91 @@ I created this API because I wanted to put into practice my knowledge with the [
     <img src="./public/static/img/responsive-social-platform-ui.webp" width="35%" raw=false>
 </div>
 
-The entire project was created with [React](https://reactjs.org/) in addition to the use of certain repositories such as axios and cors-anywhere for certain vital aspects of the project.
+The project was created with [Flask](https://flask.palletsprojects.com/en/2.1.x/) in addition to the use of the [Selenium](https://www.selenium.dev/) library for rendering of images.
 
 -   Functioning
-    -   You get information about the weather through a 32-bit reference identifier (Woeid) that is obtained through a request. It takes as data your current Latitude and Longitude and when you receive all this information it is stored in local storage so that you don't have to ask for the information every time you close or open the extension. It also has a function that detects when the day has changed and automatically updates the weather information.
--   Use of [Axios](https://github.com/axios/axios)
-    -   Axios is a JavaScript library that can be executed in the browser and allows us to make HTTP client operations easy, so we can configure and make requests to a server and receive easy-to-process responses.
--   Use of [Cors-Anywhere](https://github.com/Rob--W/cors-anywhere)
-    -   CORS Anywhere is a NodeJS proxy which adds CORS headers to the proxied request.Thanks to it we were able to communicate with the API without any problem. By creating a personal proxy this [solution](https://stackoverflow.com/a/43881141) comes from user sideshowbarker on StackOverflow.
+    -   The operation is simple, with [Flask](https://flask.palletsprojects.com/en/2.1.x/) we create a server in which we will be hosting the html files, which we want to render. And by means of a request to the same server with [Selenium](https://www.selenium.dev/) we obtain an image of the DOM.
+-   Use of [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+    -   Flask is a framework that allows us to create web applications in an easy way. Thanks to this we were able to create a web application. That by means of dynamic paths will host the HTML files, giving them a unique ID.<br>These files were obtained through GET and POST requests, which vary depending on the type of element to be rendered (an active web page or the raw html code).
+-   Use of [Selenium](https://www.selenium.dev/)
+    -   Thanks to the selenium library I was able to get a representation of the DOM, plus some extra options such as being able to select a specific element or the dimensions of the capture.
 -   What I learned
-    -   During the development of this project I learned a lot about the use of APIs and web requests I also put into practice the use of asynchronous functions and other things that I had not used before in JavaScript.
+    -   During the development of this project I reinforced and applied my knowledge of the [Flask](https://flask.palletsprojects.com/en/2.1.x/) framework. Among them the use of dynamic paths, which render specific files.
 
 ## Features
 
-Inside the extension we will be able to find:
+Its main function is to render raw html code and active web pages. It also has a web interface to simplify API usage.
 
-<!-- - A button to get the information of a specific location. -->
+Functions:
+-   ### Render HTML code
+    -   With this function you can render your own HTML, CSS and JavaScript code. This in order to give as much customization as possible to the DOM. 
 
-The information displayed on the screen will be:
-
--   Temperature
--   Climate
--   Current date
--   Current location
--   Today’s Hightlights
-    -   Wind status
-    -   Humidity
-    -   Visibility
-    -   Air pressure
-
-This application/site was created as a submission to a [devChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
+-   ### Render Webpage
+    -   With this functionality you will be able to render any web page simply using the URL of that page. Note that since the rendering of this page is done from a [headless browser](https://en.wikipedia.org/wiki/Headless_browser), you will not see any of the styles that the page allows you to customize as a user.
 
 ## How To Use
 
-**Manual installation**
+The API is accessible from two different URLs:
+-   `url/api/v1/render`
+-   `url/api/v1/urlToImage`
 
-1. Download the zip file and unzip it
+These two routes share a strong resemblance in the body of their request. Which is an object with the following structure.
 
--   Chrome
+```typescript
+{
+    selector: string,
+    format: string, 
+    size: Array<string>,
+    timeout: float,
+}
+```
+Only certain elements are added to this object, depending on the path used.
 
-    <p>2. Open Chrome</p>
-    <p>3. Click on the extensions icon</p>
-    <p>4. Click on manage extensions</p>
-    <p>5. Activate developer mode (click on the switch in the upper right corner)</p>
-    <p>6. Click on load unzipped</p>
-    <p>7. Navigate to the location of the folder, which generated the zip file and select the folder</p>
+**render**:
+For this path, only three more elements need to be added to the object, which are as follows.
+```typescript
+{
+    elements: string,
+    css: string,
+    js: string,
+}
+```
+**urlToImage**:
+For this path, only one more element needs to be added to the object, which is as follows.
+```typescript
+{
+    url: string,
+}
+```
 
--   Microsoft Edge
+### Options
 
-    <p>2. Open Microsoft Edge</p>
-    <p>3. Press Alt + F and go to extensions</p>
-    <p>4. Click on manage extensions</p>
-    <p>5. Click on load unpacked</p>
-    <p>6. Navigate to the location of the folder, which generated the zip file and select the folder</p>
+-   **selector**: CSS selector of the element you want to render.
+
+-   **format**: Format of the image. It can be either `png`, `jpg`, `bin` o `base64`.
+
+-   **size**: Size of the image. This can be a value in pixels or `full`, the latter is a dynamic measurement which is based on the maximum size of the element you have selected.
+
+-   **timeout**: Waiting time to take the capture, this starts counting from the moment the server renders the page.
+
+-   **elements**: HTML code of the elements you want to render. Only from the body
+
+-   **css**: CSS code of the elements you want to render.
+
+-   **js**: JavaScript code of the elements you want to render.
+
+-   **url**: URL of the webpage you want to render.
+
+
+### Default values
+
+-   **selector**: `body`
+
+-   **format**: `png`
+
+-   **size**: [`1920`, `1080`]
+
+-   **timeout**: `2.5`
 
 
 ## Contributions
