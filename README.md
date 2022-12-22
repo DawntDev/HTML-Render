@@ -31,10 +31,10 @@ I created this API because I wanted to put into practice my knowledge with the [
 ## Overview
 
 <div align="center">
-    <img src="https://github.com/DawntDev/HTML-Render/tree/master/public/static/img/bongo-cat-codes-2jamming.webp" width="35%" raw=false>
-    <img src="https://github.com/DawntDev/HTML-Render/tree/master/public/static/img/computer-store-landing-page.webp" width="35%" raw=false>
-    <img src="https://github.com/DawntDev/HTML-Render/tree/master/public/static/img/generative-kong-summit-patterns.webp" width="35%" raw=false>
-    <img src="https://github.com/DawntDev/HTML-Render/tree/master/public/static/img/responsive-social-platform-ui.webp" width="35%" raw=false>
+    <img src="https://raw.githubusercontent.com/DawntDev/HTML-Render/master/public/static/img/bongo-cat-codes-2jamming.webp" width="35%" raw=false>
+    <img src="https://raw.githubusercontent.com/DawntDev/HTML-Render/master/public/static/img/computer-store-landing-page.webp" width="35%" raw=false>
+    <img src="https://raw.githubusercontent.com/DawntDev/HTML-Render/master/public/static/img/generative-kong-summit-patterns.webp" width="35%" raw=false>
+    <img src="https://raw.githubusercontent.com/DawntDev/HTML-Render/master/public/static/img/responsive-social-platform-ui.webp" width="35%" raw=false>
 </div>
 
 The project was created with [Flask](https://flask.palletsprojects.com/en/2.1.x/) in addition to the use of the [Selenium](https://www.selenium.dev/) library for rendering of images.
