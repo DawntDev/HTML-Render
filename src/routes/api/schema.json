@@ -1,0 +1,10 @@
+{
+    "v1": [
+        ["/api/v1/render", ["POST"]],
+        ["/api/v1/urlToImage", ["GET", "POST"]]
+    ],
+    "v2": [
+        ["/api/v2/render", ["POST"]],
+        ["/api/v2/urlToImage", ["GET", "POST"]]
+    ]
+}

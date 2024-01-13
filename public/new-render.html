@@ -10,11 +10,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
     <title>HTML-Render | Start</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+    <link rel="icon" href="{{ url_for('static', path='img/favicon.ico') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/index.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/navbar.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/loader.css') }}">
 </head>
 
 <body>
@@ -118,6 +118,6 @@
         </div>
     </div>
 </body>
-<script src="{{ url_for('static', filename='js/new-render.js') }}"></script>
+<script src="{{ url_for('static', path='js/new-render.js') }}"></script>
 
 </html>

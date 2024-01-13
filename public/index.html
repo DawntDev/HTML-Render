@@ -10,11 +10,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
     <title>HTML-Render</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/section.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" media="all">
+    <link rel="icon" href="{{ url_for('static', path='img/favicon.ico') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/index.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/navbar.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/section.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/footer.css') }}" media="all">
 </head>
 
 <body>
@@ -69,7 +69,7 @@
                     quality of the generated
                     images is very good.
                 </p>
-                <a class="button-link" href="{{ url_for('rules', version='v1')}}">View more</a>
+                <a class="button-link" href="{{ url_for('rules', version='v2') }}">View more</a>
             </div>
             <div id="example"></div>
         </div>
@@ -603,6 +603,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.3/tsparticles.bundle.min.js"
     integrity="sha512-klu0y6k0isDbuEW4o6MrEv7Ge1pPfP0ejiX5aW8RHk3k2oV97cL9/oOwKWmszHpQh/0+Kgg69CU2nMy2sIeclQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', path='js/index.js') }}"></script>
 
 </html>

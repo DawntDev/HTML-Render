@@ -7,6 +7,13 @@ div#rules {
     flex-wrap: wrap;
 }
 
+h2.deprecated {
+    color: #cd003a;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
 div#rules > div.rule {
     display: flex;
     flex-direction: column;

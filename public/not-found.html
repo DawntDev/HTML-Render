@@ -10,8 +10,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
     <title>HTML-Render | Not Found</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/not-found.css') }}">
+    <link rel="icon" href="{{ url_for('static', path='img/favicon.ico') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/not-found.css') }}">
 </head>
 
 <body>
@@ -24,5 +24,5 @@
         </p>
     </div>
 </body>
-<script src="{{ url_for('static', filename='js/not-found.js') }}"></script>
+<script src="{{ url_for('static', path='js/not-found.js') }}"></script>
 </html>

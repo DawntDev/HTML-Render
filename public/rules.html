@@ -10,11 +10,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="theme-color" content="#6366f1">
     <title>HTML-Render | Rules</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/rules.css') }}" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" media="all">
+    <link rel="icon" href="{{ url_for('static', path='img/favicon.ico') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/index.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/navbar.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/rules.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/footer.css') }}" media="all">
 </head>
 
 <body>
@@ -58,6 +58,9 @@
             </ul>
         </nav>
     </header>
+    {% if deprecated %}
+        <h2 class="deprecated">Deprecated</h2>
+    {% endif %}
     <div id="rules">
         {% for rule in rules %}
             <div class="rule">
