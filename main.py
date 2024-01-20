@@ -3,21 +3,30 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from os.path import dirname, join
 from src.routes import common, api
+import os, shutil
 
 app = FastAPI()
 origins = ["*"]
-current_dir = dirname(__file__)
+current_dir = os.path.dirname(__file__)
 
-with open(join(current_dir, "routes", "api", "schema.json"), "r") as f:
-    app.schemas = json.load(f) # type: ignore
-    app.templates = Jinja2Templates(directory=join(current_dir, "public")) # type: ignore
+with open(os.path.join(current_dir, "src", "routes", "api", "schema.json"), "r") as f:
+    app.schemas = json.load(f)  # type: ignore
+    app.templates = Jinja2Templates( # type: ignore
+        directory=os.path.join(
+            current_dir, 
+            "public"
+        )
+    )  
 
 app.mount(
-    "/static", 
-    StaticFiles(directory=join(current_dir, "public", "static")), 
-    name="static"
+    "/static",
+    StaticFiles(directory=os.path.join(
+        current_dir, 
+        "public", 
+        "static"
+    )),
+    name="static",
 )
 
 app.add_middleware(
@@ -28,9 +37,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Regenerate folders
+for path in ("public/builds", "public/renders"):
+    if os.path.exists(path):
+        shutil.rmtree(path)
+    os.mkdir(path)
+
 @app.exception_handler(404)
 def not_found(request: Request, *_):
-    return app.templates.TemplateResponse("not-found.html", {"request": request}) # type: ignore
-                                          
+    return app.templates.TemplateResponse( #type: ignore
+        "not-found.html", 
+        {"request": request}, 
+        status_code=404
+    )  
+
 app.include_router(common)
 app.include_router(api)

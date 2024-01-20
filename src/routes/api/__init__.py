@@ -1,18 +1,11 @@
-from typing import Literal
-from fastapi import Request, APIRouter
+from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
+from .builds import builds
+from .rules import rules
+from .v2 import v2
 
 api = APIRouter(prefix="/api")
 
-
-@api.get("/rules/{version}", response_class=HTMLResponse)
-def rules(request: Request, version: Literal["v1", "v2"] = "v2"):
-    return request.app.templates.TemplateResponse(
-        request=request, 
-        name="rules.html", 
-        context={
-            "rules": request.app.schemas[version],
-            "deprecated": version != "v2"
-        }
-    )
-    
+api.add_api_route("/builds/{filename}", builds, methods=["GET", "POST"], name="builds")
+api.add_api_route("/rules/{version}", rules, methods=["GET"], response_class=HTMLResponse,  name="rules")
+api.include_router(v2)

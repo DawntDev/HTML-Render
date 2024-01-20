@@ -130,6 +130,12 @@ dmypy.json
 
 Include
 Scripts
+bin
+include
 pyvenv.cfg
 test
 .vscode
+lib64
+docker-compose.debug.yml
+public/renders
+public/builds

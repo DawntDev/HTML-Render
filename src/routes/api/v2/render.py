@@ -1,20 +1,18 @@
-from fastapi import Request, Depends
+from fastapi import Request
 from fastapi.responses import RedirectResponse
+from src.schemas.renders import RenderSource
 from src import Builder
-from src.schemas.renders import RenderImage
 
 
-def method_get(req: Request, args: RenderImage = Depends()):
-    return url_to_image(req, args)
-
-
-def method_post(req: Request, args: RenderImage):
-    return url_to_image(req, args)
-
-
-def url_to_image(request: Request, render: RenderImage):
+def render(request: Request, render: RenderSource):
     source = render.model_dump()
-    page = Builder.from_url(str(request.base_url), source.pop("url"))
+    page = Builder(
+        str(request.base_url),
+        source.pop("url"),
+        source.pop("elements"),
+        source.pop("css"),
+        source.pop("js"),
+    )
 
     response = page.convert(**source)
     if not response:
